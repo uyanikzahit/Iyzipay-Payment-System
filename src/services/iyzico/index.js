@@ -3,6 +3,7 @@ import * as Cards from "./methods/cards";
 import * as Installments from "./methods/installments";
 import * as Payments from "./methods/payment";
 import * as PaymentsThreeDS from "./methods/threeds-payments"
+import * as Checkouts from "./methods/checkouts";
 import nanoid from "../../utils/nanoid";
 import * as Logs from "../../utils/logs";
 
@@ -421,7 +422,7 @@ const createPaymentWithSavedCard = () =>{
 
 
 // -----------------------------
-/* e) 3D Secure Payments */
+/* d) 3D Secure Payments */
 // -----------------------------
  
 
@@ -707,12 +708,128 @@ const initializeThreeDSPaymentsWithNewCardAndRegister = ()=>{
 
     }).then((result) => {
             console.log(result)
-            Logs.logFile("11-threeds-payments-kayitli-bir-kart", result)
+            Logs.logFile("12-threeds-payments-kayitli-bir-kart", result)
         }).catch((err) =>{
             console.log(err);
-            Logs.logFile("11-threeds-payments-kayitli-bir-kart-hata",err)
+            Logs.logFile("12-threeds-payments-kayitli-bir-kart-hata",err)
         })
 }
 
 // initializeThreeDSPaymentsWithNewCardAndRegister()
-readCardOfAUser();
+// readCardOfAUser();
+
+
+// -----------------------------
+/* a) CARDS */
+// -----------------------------
+
+
+// /Checkout form içerisinde odeme baslat
+
+
+const initializeCheckoutForm = () =>{
+    Checkouts.initialize({locale: Iyzipay.LOCALE.TR,
+        conversationId: nanoid(),
+        price: "300",
+        paidPrice: "300",
+        currency: Iyzipay.CURRENCY.TRY,
+        Installments: "1",
+        basketId: "B67JDL",
+        paymentChannel: Iyzipay.PAYMENT_CHANNEL.WEB,
+        paymentGroup: Iyzipay.PAYMENT_GROUP.PRODUCT,
+        callbackUrl:"https://localhost/api/checkout/complete/payment",
+        cardUserKey: "dbedf9bc-0650-7190-7d21-94e718deb557",
+        enabledInstallments:[1,2,3,6,9],
+        buyer:{
+            id:"SDSAGSD",
+            name: "John",
+            surname: "Doe",
+            gsmNumber:"+905350000000",
+            email:"email@email.com",
+            identityNumber:"743008664791",
+            lastLoginDate:"2020-10-05 12:43:35",
+            registrationDate:"2020-10-04 12:43:35",
+            registrationAddress:"Nidakule Göztepe, Merdivenkoy mah. Bora sok. No:1",
+            ip:"85.34.78.112",
+            city:"Istanbul",
+            country: "Turkey",
+            zipCode: "34732"
+
+        },
+        shippingAddress: {
+            contactName:"John Doe",
+            city:"Istanbul",
+            country: "Turkey",
+            address:"Nidakule Göztepe, Merdivenkoy mah. Bora sok. No:1",
+            zipCode: "34732"
+
+        },
+        billingAddress: {
+            contactName:"John Doe",
+            city:"Istanbul",
+            country: "Turkey",
+            address:"Nidakule Göztepe, Merdivenkoy mah. Bora sok. No:1",
+            zipCode: "34732"
+
+        },
+        basketItems:[
+            {
+                id:"BT101",
+                name:"Samsung S20",
+                category1:"Telefonlar",
+                category1:"Android Telefonlar",
+                itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+                price:150
+            },
+            {
+                id:"BT101",
+                name:"İphone 15",
+                category1:"Telefonlar",
+                category1:"İphone Telefonlar",
+                itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+                price:90
+            },
+            {
+                id:"BT101",
+                name:"Samsung S24",
+                category1:"Telefonlar",
+                category1:"Android Telefonlar",
+                itemType: Iyzipay.BASKET_ITEM_TYPE.PHYSICAL,
+                price:60
+            }
+        ]
+
+    }).then((result) => {
+            console.log(result)
+            Logs.logFile("13-threeds-payments-kayitli-bir-kart", result)
+        }).catch((err) =>{
+            console.log(err);
+            Logs.logFile("13-threeds-payments-kayitli-bir-kart-hata",err)
+        })
+}
+
+// initializeCheckoutForm()
+
+
+
+//Tamamlanmis ya da tamamlanmamis checkout form ödeme bilgisini gosterir
+
+const getFormPayment = () => {
+    Checkouts.getFormPayment({
+        locale: Iyzipay.LOCALE.TR,
+        conversationId: nanoid(),
+        token: "ea15e2e0-e118-4450-99eb-e795e02d301b"
+
+    }).then((result) => {
+            console.log(result)
+            Logs.logFile("14-threeds-payments-get-detials", result)
+        }).catch((err) =>{
+            console.log(err);
+            Logs.logFile("14-threeds-payments-get-detials-hata",err)
+        })
+}
+
+getFormPayment()
+
+
+
