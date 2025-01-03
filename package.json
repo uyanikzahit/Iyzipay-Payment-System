@@ -4,8 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npx @babel/node",
-    "dev": "babel src --out-dir=./build --copy-files --watch",
-    "build": "babel src --out-dir=./build --copy-files",
+    "dev": "npx nodemon --exec npx @babel/node ./src/index.js dev --watch",
+        "build": "npx babel src --out-dir=./build --copy-files",
+    "production":"npm run build && node ./build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,10 +25,26 @@
     "@babel/core": "^7.26.0",
     "@babel/node": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
-    "@babel/register": "^7.25.9"
+    "@babel/register": "^7.25.9",
+    "nodemon": "^3.1.9"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^8.0.0",
+    "https": "^1.0.0",
     "iyzipay": "^2.0.64",
-    "nanoid": "^5.0.9"
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "mongoose": "^8.9.3",
+    "morgan": "^1.10.0",
+    "nanoid": "^5.0.9",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "uuid": "^11.0.3"
   }
 }
