@@ -51,13 +51,13 @@ const Carts = mongoose.model("Carts",CartsSchema);
 
 
 Carts.starterData = {
-    _id: mongoose.Types.ObjectId('61d05524bf858c7449e9d456'),
+    _id: new mongoose.Types.ObjectId('61d05524bf858c7449e9d456'),
     buyer: new mongoose.Types.ObjectId('61d054de0d8af19519e88a61'),
     completed: false,
     products: [
-        mongoose.Types.ObjectId('61d054e5a2f56187efb0a3b2'),
-        mongoose.Types.ObjectId('61d055016272c60f701be7ac'),
-        mongoose.Types.ObjectId('61d055095087612ecee33a20'),
+        new mongoose.Types.ObjectId('61d054e5a2f56187efb0a3b2'),
+        new mongoose.Types.ObjectId('61d055016272c60f701be7ac'),
+        new mongoose.Types.ObjectId('61d055095087612ecee33a20'),
     ],
     currency: 'TRY'
 }

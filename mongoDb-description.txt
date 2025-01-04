@@ -1,5 +1,5 @@
 payment-system-backend
 
-9Dt0GDPCh8Vl3nB0
+Y0Wv7pURFBTwEihP
 
-mongodb+srv://payment-system-backend:9Dt0GDPCh8Vl3nB0@cluster0.iit11.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+mongodb+srv://payment-system-backend:Y0Wv7pURFBTwEihP@cluster0.iit11.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

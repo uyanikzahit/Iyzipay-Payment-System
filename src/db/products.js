@@ -68,7 +68,7 @@ const Products = mongoose.model("Products",ProductsSchema)
 
 Products.starterData = [
     {
-        _id: mongoose.Types.ObjectId('61d054e5a2f56187efb0a3b2'),
+        _id: new mongoose.Types.ObjectId('61d054e5a2f56187efb0a3b2'),
         name: "Samsung Galaxy S20",
         uid: nanoid(),
         images: ["https://picsum.photos/500/500?random=1", "https://picsum.photos/500/500?random=1", "https://picsum.photos/500/500?random=1"],
@@ -79,7 +79,7 @@ Products.starterData = [
         stock: 10,
         itemType: "PHYSICAL"
     }, {
-        _id: mongoose.Types.ObjectId('61d055016272c60f701be7ac'),
+        _id: new mongoose.Types.ObjectId('61d055016272c60f701be7ac'),
         name: "Iphone 12",
         uid: nanoid(),
         images: ["https://picsum.photos/500/500?random=1", "https://picsum.photos/500/500?random=1", "https://picsum.photos/500/500?random=1"],
@@ -91,7 +91,7 @@ Products.starterData = [
         itemType: "PHYSICAL"
     },
     {
-        _id: mongoose.Types.ObjectId('61d055095087612ecee33a20'),
+        _id: new mongoose.Types.ObjectId('61d055095087612ecee33a20'),
         name: "Ipad Pro 2021",
         uid: nanoid(),
         images: ["https://picsum.photos/500/500?random=1", "https://picsum.photos/500/500?random=1", "https://picsum.photos/500/500?random=1"],

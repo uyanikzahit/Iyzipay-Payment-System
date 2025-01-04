@@ -84,14 +84,14 @@ const UsersSchema = new Schema({
         type: String,
         required:true
     },
-    address:{
+    ip:{
         type: String,
         required:true,
         default:"85.34.78.112"
     },
     cardUserKey:{
         type: String,
-        required:true,
+        required:false,
         unique:true
     },
 
@@ -124,12 +124,13 @@ UsersSchema.pre("save",async function(next){
 
 
 //Model: veri yazmak ve okumak için kullanılan kısım
+// Model tanımı
+const Users = mongoose.model("Users", UsersSchema);
 
-const USers = mongoose.model("Users", UsersSchema);
-
+// Starter data
 Users.starterData = [
     {
-        _id: mongoose.Types.ObjectId("61d054de0d8af19519e88a61"),
+        _id: new mongoose.Types.ObjectId("61d054de0d8af19519e88a61"), // Doğrudan mongoose üzerinden çağırıldı
         locale: "tr",
         name: "John",
         surname: "Doe",
@@ -144,7 +145,9 @@ Users.starterData = [
         zipCode: "34732",
         ip: "85.34.78.112"
     }
-]
+];
+
+
 
 Users.exampleUserCardData = {
     cardAlias: "Benim Kartım",
