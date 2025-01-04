@@ -165,3 +165,5 @@ Users.initializer = async()=>{
 }
 
 Users.initializer();
+
+export default Users;
