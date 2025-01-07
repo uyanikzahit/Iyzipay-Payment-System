@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import nanoid from "../utils/nanoid";
 
+
 const { Schema} = mongoose;
 const {ObjectId} = Schema.Types;
 
@@ -34,7 +35,7 @@ const ProductsSchema = new Schema({
         type: String,
         required:true,
         default:"TRY",
-        enum:["TRU", "USD","EUR"]
+        enum:["TRY", "USD","EUR"]
     },
     stock:{
         type: Number,

@@ -31,7 +31,7 @@ const CartsSchema = new Schema({
         type: String,
         required:true,
         default:"TRY",
-        enum:["TRU", "USD","EUR"]
+        enum:["TRY", "USD","EUR"]
     }, 
 },{
     _id:true,

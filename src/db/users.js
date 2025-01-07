@@ -28,7 +28,7 @@ const UsersSchema = new Schema({
         type:String,
         required: true,
         default:"user",
-        enum:["user","admin"]
+        enum:["user","admin"] 
     },
     name:{
         type: String,
@@ -41,13 +41,13 @@ const UsersSchema = new Schema({
     email:{
         type: String,
         required:true,
-        unique: true,
+        unique: true
 
     },
     phoneNumber:{
         type: String,
         required:true,
-        unique: true,
+        unique: true
 
     },
     identityNumber:{
@@ -57,17 +57,17 @@ const UsersSchema = new Schema({
     },
     password:{
         type: String,
-        required:true,
+        required:true
     },
     avatarUrl:{
-        type: String,
+        type: String
     },
     avatarColor:{
         type: String,
         default: randomColorGenerator(),
         required:true
     },
-    address:{
+    address:{  
         type: String,
         required:true
     },
@@ -145,7 +145,7 @@ Users.starterData = [
         zipCode: "34732",
         ip: "85.34.78.112"
     }
-];
+]
 
 
 
