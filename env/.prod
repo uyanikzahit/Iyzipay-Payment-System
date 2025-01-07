@@ -2,7 +2,6 @@ DEPLOYMENT=PRODUCTION
 HTTPS_ENABLED=false
 PORT=8080
 LOGGER=tiny
-
-payment-system-production
 MONGO_URI=mongodb+srv://payment-system-backend:Y0Wv7pURFBTwEihP@cluster0.iit11.mongodb.net/payment-system-production
 ?retryWrites=true&w=majority&appName=Cluster0
+JWT_SECRET=AHSDFJASDFGDASGSDMGASadgbkasd_Asfgasjkg
