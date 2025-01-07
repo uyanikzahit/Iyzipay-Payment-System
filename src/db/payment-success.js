@@ -79,7 +79,7 @@ const PaymentsSuccessSchema = new Schema({
 
 },{
     _id:true,
-        collation: "payments-success",
+        collection: "payments-success",
         timestamps: true,
         toJSON:{
             transform: (doc, ret)=>{

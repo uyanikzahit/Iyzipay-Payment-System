@@ -91,14 +91,14 @@ const UsersSchema = new Schema({
     },
     cardUserKey:{
         type: String,
-        required:false,
+        required: false,
         unique:true
     },
 
 
 },{
     _id:true,
-    collation: "users",
+    collection: "users",
     timestamps: true,
     toJSON:{
         transform: (doc, ret)=>{
@@ -167,6 +167,6 @@ Users.initializer = async()=>{
     }
 }
 
-Users.initializer();
+// Users.initializer();
 
 export default Users;

@@ -35,7 +35,7 @@ const ProductsSchema = new Schema({
         type: String,
         required:true,
         default:"TRY",
-        enum:["TRY", "USD","EUR"]
+        enum:["TRY","USD","EUR"]
     },
     stock:{
         type: Number,
@@ -52,7 +52,7 @@ const ProductsSchema = new Schema({
 },{
     
     _id:true,
-    collation: "products",
+    collection: "products",
     timestamps: true,
     toJSON:{
         transform: (doc, ret)=>{
@@ -114,6 +114,6 @@ Products.initializer = async()=>{
     }
 }
 
-Products.initializer();
+// Products.initializer();
 
 export default Products;

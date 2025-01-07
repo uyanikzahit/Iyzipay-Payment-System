@@ -1,6 +1,6 @@
 DEPLOYMENT=DEVELOPMENT
 HTTPS_ENABLED=true
-PORT=4443
+PORT=443
 LOGGER=dev
 MONGO_URI=mongodb+srv://payment-system-backend:Y0Wv7pURFBTwEihP@cluster0.iit11.mongodb.net/payment-system-development
 ?retryWrites=true&w=majority&appName=Cluster0

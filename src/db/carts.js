@@ -20,12 +20,12 @@ const CartsSchema = new Schema({
     buyer:{
         type: ObjectId,
         ref:"Users",
-        require:true
+        required:true
     },
     products:{
         type:[ObjectId],
         ref: "Products",
-        require: true
+        required: true
     },
     currency:{
         type: String,
@@ -35,12 +35,12 @@ const CartsSchema = new Schema({
     }, 
 },{
     _id:true,
-    collation: "carts",
+    collection: "carts",
     timestamps: true,
     toJSON:{
         transform: (doc, ret)=>{
             delete ret.__v;
-            return{
+            return {
                 ...ret
             }
         }
@@ -85,15 +85,18 @@ Carts.populationTest = async () => {
         images: 1,
         currency: 1,
         stock: 1,
-        itemType: 1
+        itemType: 1,
+        createdAt:1
     }).populate('buyer');
 
     console.log(cart)
 }
 
-Carts.initializer().then(async res=>{
-    await Carts.populationTest()
-});
+// Carts.initializer().then(async res=>{
+//     await Carts.populationTest()
+// });
+
+Carts.populationTest()
 
 export default Carts;
 

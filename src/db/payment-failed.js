@@ -9,7 +9,7 @@ const PaymentsFailedSchema = new Schema({
         default: nanoid(),
         unique: true,
         required: true
-    },
+    },  
     status: {
         type: String,
         required: true,
@@ -34,7 +34,7 @@ const PaymentsFailedSchema = new Schema({
 },{
 
     _id:true,
-    collation: "payments-failed",
+    collection: "payments-failed",
     timestamps: true,
     toJSON:{
         transform: (doc, ret)=>{
