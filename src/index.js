@@ -16,6 +16,7 @@ import Users from "./db/users";
 import GenericErrorHandler from "./middlewares/GenericErrorHandler.js";
 import ApiError from "./error/ApiError.js";
 import Session from "./middlewares/Session.js";
+import routes from "./routes/index";
 
 const envPath = config?.production
     ?"./env/.prod"
@@ -40,6 +41,9 @@ mongoose.connect(process.env.MONGO_URI,{
 //End MongoDB Connection
 
 const app = express();
+const router = express.Router();
+
+
 
 app.use(logger(process.env.LOGGER))
 
@@ -94,6 +98,14 @@ passport.use(new JwtStrategy(
 //         test:1
 //     })
 // })
+
+
+routes.forEach((routeFn, index) => {
+    routeFn(router)
+})
+
+app.use("/api", router)
+
 
 app.all("/test-auth", Session, (req, res)=> {
     res.json({
