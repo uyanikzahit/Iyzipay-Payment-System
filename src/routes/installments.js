@@ -10,6 +10,7 @@ import { route } from "express/lib/router";
 const {ObjectId} = Types;
 
 export default (router) => {
+    //FİYATA GÖRE TAKSİT KONTROLÜ
     router.post("/installments", Session, async(req, res)=>{
         const {binNumber, price} = req.body;
         if(!binNumber || !price){
@@ -23,4 +24,38 @@ export default (router) => {
         })
         res.json(result);
     })
+
+
+    //SEPETİN FİYATINA GÖRE TAKSİT KONTROLÜ
+
+    router.post("/installments/:cardId", Session, async(req, res)=> {
+        const {binNumber} = req.body;
+        const {cartId} = req.params;
+        if(!cartId) {
+            throw new ApiError("Cart id is required", 400, "cartIdRequired");
+        }
+        const cart = await Carts.findOne({
+            _id: ObjectId(cartId)
+        }).populate("products", {
+            _id: 1,
+            price: 1 
+        })
+
+
+
+        
+        const price = cart.products.map((product) => product.price).reduce((a,b) => a+b,0);
+        if(!binNumber || !price) {
+            throw new ApiError("Missing parameters", 400, "missingParameters");
+        }
+        const result = await Installments.checkInstallment({
+            locale: req.user.locale,
+            conversation: nanoid(),
+            binNumber: binNumber,
+            price: price
+        })
+
+        res.json(cart);
+    })
 }
+
