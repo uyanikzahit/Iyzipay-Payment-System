@@ -146,6 +146,7 @@ const checkInstallments = () => {
 
 //Kayıtlı olmayan kartla ödeme yapma ve kartı kaydetme
 
+
 const createPayment = () =>{
     return Payments.createPayment({
         locale: Iyzipay.LOCALE.TR,

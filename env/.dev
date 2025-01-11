@@ -5,4 +5,4 @@ LOGGER=dev
 MONGO_URI=mongodb+srv://payment-system-backend:Y0Wv7pURFBTwEihP@cluster0.iit11.mongodb.net/payment-system-development
 ?retryWrites=true&w=majority&appName=Cluster0
 JWT_SECRET=AHSDFJASDFGDASGSDMGASadgbkasd_Asfgasjkg
-
+END_POINT=https://127.0.0.1/api
