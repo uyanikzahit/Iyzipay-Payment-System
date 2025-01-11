@@ -1,17 +1,18 @@
 import { Types } from "mongoose";
-import PaymentSucces from "../db/payment-success"
+import PaymentSucces from "../db/payment-success";
 import PaymentFailed from "../db/payment-failed";
 import Carts from "../db/carts";
+
 const {ObjectId} = Types;
 
 export const CompletePayment = async (result) => {
     if(result?.status === "success") {
-        await Carts.updateOne({_id:ObjectId(result.basetId)}, {$set:{
+        await Carts.updateOne({_id: ObjectId(result?.basetId)}, {$set:{
             completed:true
         }})
         await PaymentSucces.create({
             status: result.status,
-            cardId: result?.basetId,
+            cartId: result?.basetId,
             conversationId: result?.conversationId,
             currency: result?.currency,
             paymentId: result?.paymentId,

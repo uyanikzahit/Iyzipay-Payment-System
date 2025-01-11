@@ -153,7 +153,7 @@ const createPayment = () =>{
         price: "300",
         paidPrice: "300",
         currency: Iyzipay.CURRENCY.TRY,
-        Installments: "1",
+        installments: "1",
         basketId: "B67JDL",
         paymentChannel: Iyzipay.PAYMENT_CHANNEL.WEB,
         paymentGroup: Iyzipay.PAYMENT_GROUP.PRODUCT,

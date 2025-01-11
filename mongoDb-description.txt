@@ -3,3 +3,9 @@ payment-system-backend
 Y0Wv7pURFBTwEihP
 
 mongodb+srv://payment-system-backend:Y0Wv7pURFBTwEihP@cluster0.iit11.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+
+netstat -ano | findstr :443
+
+taskkill /PID 20816 /F

@@ -1,11 +1,8 @@
 DEPLOYMENT=DEVELOPMENT
 HTTPS_ENABLED=true
-PORT=4443
+PORT=443
 LOGGER=dev
 MONGO_URI=mongodb+srv://payment-system-backend:Y0Wv7pURFBTwEihP@cluster0.iit11.mongodb.net/payment-system-development
 ?retryWrites=true&w=majority&appName=Cluster0
 JWT_SECRET=AHSDFJASDFGDASGSDMGASadgbkasd_Asfgasjkg
 
-netstat -ano | findstr :4443
-
-taskkill /PID 22020 /F

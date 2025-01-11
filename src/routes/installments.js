@@ -28,14 +28,14 @@ export default (router) => {
 
     //SEPETİN FİYATINA GÖRE TAKSİT KONTROLÜ
 
-    router.post("/installments/:cardId", Session, async(req, res)=> {
+    router.post("/installments/:cartId",Session,async(req, res)=>{
         const {binNumber} = req.body;
         const {cartId} = req.params;
         if(!cartId) {
             throw new ApiError("Cart id is required", 400, "cartIdRequired");
         }
         const cart = await Carts.findOne({
-            _id: ObjectId(cartId)
+            _id: new  ObjectId(cartId)
         }).populate("products", {
             _id: 1,
             price: 1 
@@ -55,7 +55,7 @@ export default (router) => {
             price: price
         })
 
-        res.json(cart);
+        res.json(result);
     })
 }
 
