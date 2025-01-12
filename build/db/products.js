@@ -112,5 +112,6 @@ Products.initializer = async () => {
     console.log(Products.starterData);
   }
 };
-Products.initializer();
+
+// Products.initializer();
 var _default = exports.default = Products;

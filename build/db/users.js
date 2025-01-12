@@ -163,5 +163,6 @@ Users.initializer = async () => {
     console.log(Users.starterData);
   }
 };
-Users.initializer();
+
+// Users.initializer();
 var _default = exports.default = Users;

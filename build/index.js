@@ -11,10 +11,14 @@ var _path = _interopRequireDefault(require("path"));
 var _helmet = _interopRequireDefault(require("helmet"));
 var _cors = _interopRequireDefault(require("cors"));
 var _mongoose = _interopRequireDefault(require("mongoose"));
+var _passport = _interopRequireDefault(require("passport"));
+var _passportJwt = require("passport-jwt");
 var _db = _interopRequireDefault(require("./db"));
 var _users = _interopRequireDefault(require("./db/users"));
 var _GenericErrorHandler = _interopRequireDefault(require("./middlewares/GenericErrorHandler.js"));
 var _ApiError = _interopRequireDefault(require("./error/ApiError.js"));
+var _Session = _interopRequireDefault(require("./middlewares/Session.js"));
+var _index = _interopRequireDefault(require("./routes/index"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 const envPath = _config.default?.production ? "./env/.prod" : "./env/.dev";
 _dotenv.default.config({
@@ -35,6 +39,7 @@ _mongoose.default.connect(process.env.MONGO_URI, {
 //End MongoDB Connection
 
 const app = (0, _express.default)();
+const router = _express.default.Router();
 app.use((0, _morgan.default)(process.env.LOGGER));
 
 //Tarayıcıdan farklı yerlerden istek atilinca bizim sunucumuzdan gerçekleştiriyor.
@@ -49,10 +54,50 @@ app.use(_express.default.json({
 app.use(_express.default.urlencoded({
   extended: true
 }));
-app.use("/", (req, res) => {
-  throw new _ApiError.default("Bir hata oluştu", 404, "somethingWrong");
+_passport.default.serializeUser((user, done) => {
+  done(null, user);
+});
+_passport.default.deserializeUser((id, done) => {
+  done(null, id);
+});
+app.use(_passport.default.initialize());
+const jwtOpts = {
+  jwtFromRequest: _passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET
+};
+
+//Kullanıcı eslemesi
+
+_passport.default.use(new _passportJwt.Strategy(jwtOpts, async (jwtPayload, done) => {
+  try {
+    const user = await _users.default.findOne({
+      _id: jwtPayload._id
+    });
+    if (user) {
+      done(null, user.toJSON());
+    } else {
+      done(new _ApiError.default("Authorization is not valid", 401, "authorizationInvalid"), false);
+    }
+  } catch (err) {
+    return done(err, false);
+  }
+}));
+
+// ---------------------
+// app.use("/",(req,res)=>{
+//     throw new ApiError("Bir hata oluştu", 404, "somethingWrong")
+//     res.json({
+//         test:1
+//     })
+// })
+
+_index.default.forEach((routeFn, index) => {
+  routeFn(router);
+});
+app.use("/api", router);
+app.all("/test-auth", _Session.default, (req, res) => {
   res.json({
-    test: 1
+    test: true
   });
 });
 app.use(_GenericErrorHandler.default);

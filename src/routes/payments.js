@@ -17,14 +17,14 @@ export default ( router ) => {
             throw new ApiError("Card is required", 400, "cardRequired");
         }
         if(!req.params?.cartId){
-            throw new ApiError("Cart id is required", 400, "cartIdRequired");
+            throw new ApiError("Cart id is required", 400, "cardIdRequired");
         }
         const cart = await Carts.findOne({_id: req.params?.cartId}).populate("buyer").populate("products");
         if(!cart) {
-            throw new ApiError("Cart not found", 404, "cartNotFound");
+            throw new ApiError("Cart not found", 404, "cardNotFound");
         }
         if(cart?.completed){
-            throw new ApiError("Cart is completed", 400, "cartCompleted");
+            throw new ApiError("Cart is completed", 400, "cardCompleted");
         }
 
         card.registerCard = "0";

@@ -8,4 +8,4 @@ mongodb+srv://payment-system-backend:Y0Wv7pURFBTwEihP@cluster0.iit11.mongodb.net
 
 netstat -ano | findstr :443 
 
-taskkill /PID 1604 /F
+taskkill /PID 1440 /F

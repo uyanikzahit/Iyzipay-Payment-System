@@ -36,13 +36,17 @@ export default (router) => {
         if(!card) {
             throw new ApiError("Card is required", 400, "cardRequired");
         }
-        if(!req.params?.cartId){
+        if (!req.params?.cartId) {
+            console.error("Cart ID is missing:", req.params);
             throw new ApiError("Cart id is required", 400, "cartIdRequired");
         }
+
         const cart = await Carts.findOne({_id: req.params?.cartId}).populate("buyer").populate("products");
-        if(!cart) {
+        if (!cart) {
+            console.error("Cart not found for ID:", req.params.cartId);
             throw new ApiError("Cart not found", 404, "cartNotFound");
         }
+
         if(cart?.completed){
             throw new ApiError("Cart is completed", 400, "cartCompleted");
         }
